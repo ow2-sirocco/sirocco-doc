@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="14.0">
+    <meta>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options/>
+    </meta>
+    <projectTree name="install-guide.xpr">
+        <file name="app_support.xml"/>
+        <file name="bk-installguide.xml"/>
+        <file name="ch_dashboard.xml"/>
+        <file name="ch_install.xml"/>
+        <file name="ch_introduction.xml"/>
+    </projectTree>
+</project>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+    xml:id="ch_build">
+    <title>Installation and build</title>
+    
+    <section>
+        <title>Installing Sirocco</title>
+        <para>To install Sirocco on Debian or Ubuntu, proceed as follows:</para>
+        <programlisting>wget -O - http://sirocco.ow2.org/debian/sirocco.gpg.key | sudo apt-key add -
+echo "deb http://sirocco.ow2.org/debian sirocco  main" > /etc/apt/sources.list.d/sirocco.list
+apt-get update
+apt-get install sirocco-server</programlisting>
+        <para>Check that Sirocco has been successfully installed by opening a browser to the following URL <emphasis>http://localhost:8080/dashboard/ui</emphasis>.
+            The default installation creates a user <emphasis>guest</emphasis> with password <emphasis>guest</emphasis> who is member of the tenant <emphasis>trial</emphasis>
+            <figure xml:id="dashboard-login">
+                <title>Login page</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="figures/dashboard_login.png"
+                            format="PNG" contentwidth="4in"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </para>
+        <para>To install the CIMI commmand-line tools:</para>
+        <programlisting>apt-get install sirocco-cimi-cli</programlisting>
+        <para>To install the Sirocco commmand-line tools:</para>
+        <programlisting>apt-get install sirocco-api-cli</programlisting>
+    </section>
+    <section>
+        <title>Configuring the command-line tools</title>
+        <para>The following environment variables must be set:</para>
+        <programlisting>SIROCCO_ENDPOINT_URL=http://localhost:8080/cimi
+SIROCCO_USERNAME=guest
+SIROCCO_PASSWORD=guest
+SIROCCO_TENANT_NAME=trial
+SIROCCO_TOOLS_HOME=&lt;sirocco cli installation directory>
+CIMICLIENT_TOOLS_HOME=&lt;cimi cli installation directory></programlisting>
+    <para>Add $SIROCCO_TOOLS_HOME/bin and $CIMICLIENT_TOOLS_HOME/bin to your PATH</para>
+    </section>
+    
+    <section>
+        <title>Building and running Sirocco</title>
+        <para>Create an account on GitHub and set-up a SSH keypair.</para>
+        <para>Prerequisites</para>
+        <itemizedlist>
+            <listitem><para>git 1.8.2+</para></listitem>
+            <listitem><para>maven 3.0+</para></listitem>
+            <listitem><para>jdk 7+</para></listitem>
+            <listitem><para>MySQL 5.x</para></listitem>
+        </itemizedlist>
+        <para>Clone the Siroco git superproject:</para>
+        <programlisting>git clone --recursive git@github.com:ow2-sirocco/sirocco.git
+git submodule update --remote</programlisting>
+        <para>To build the source, execute:</para>
+        <programlisting>mvn clean install</programlisting>
+        <para>The output of the compilation consists of:</para>
+        <itemizedlist>
+            <listitem><para>Sirocco JavaEE application archive: <filename>sirocco-ear/target/sirocco-XXX-SNAPSHOT.ear</filename></para></listitem>
+            <listitem><para>CIMI command-line tools: <filename>cimi-client/sirocco-cimi-command-line-tools/target/sirocco-cimi-command-line-tools-XXX-SNAPSHOT-dist.tar.gz</filename></para></listitem>
+            <listitem><para>Sirocco command-line tools: <filename>cloudmanager-business-module/sirocco-api/command-line-tools/target/sirocco-api-command-line-tools-XXX-SNAPSHOT-dist.tar.gz</filename></para></listitem>
+        </itemizedlist>
+    
+        <para>Once Sirocco has been built, proceed as follows to install it on a Debian or Ubuntu server:</para>
+        <procedure>
+            <step><para>Install GlassFish4</para><programlisting>wget http://download.java.net/glassfish/4.0/release/glassfish-4.0.zip</programlisting>
+                <para>Uzip glassfish, say in /opt</para></step>
+            <step><para>Set-up logging</para>
+                <para>Sirocco requires that applications and GlassFish logging output be redirected to the same log file using the SLF4j API:</para>
+                <programlisting>cd /opt/glassfish4/glassfish/lib/endorsed
+
+wget http://repo1.maven.org/maven2/ch/qos/logback/logback-classic/1.0.13/logback-classic-1.0.13.jar
+wget http://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.0.13/logback-core-1.0.13.jar
+wget http://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar
+wget http://repo1.maven.org/maven2/org/slf4j/jul-to-slf4j/1.7.5/jul-to-slf4j-1.7.5.jar
+
+cp  etc/glassfish_config/* /opt/glassfish4/glassfish/domains/domain1/config</programlisting>
+            </step>
+            <step><para>Patch Glassfish to work around a bug related to CDI</para>
+            <programlisting>cd /opt/glassfish4/glassfish/modules
+wget http://repo1.maven.org/maven2/org/glassfish/jersey/containers/glassfish/jersey-gf-cdi/2.0/jersey-gf-cdi-2.0.jar
+mv jersey-gf-cdi-2.0.jar jersey-gf-cdi.jar</programlisting></step>
+            <step><para>Install MySQL JDBC connector</para><programlisting>cd /opt/glassfish4/glassfish/domains/domain1/lib/
+wget http://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26.jar</programlisting></step>
+            <step><para>Create and initialize Sirocco MySQL database</para>
+                <para>To create the Sirocco database accessible by user "sirocco" with password "sirocco", execute the following MySQL commands:</para>
+            <programlisting>CREATE USER 'sirocco'@'localhost' IDENTIFIED BY 'sirocco';
+GRANT ALL PRIVILEGES ON *.* TO 'sirocco'@'localhost' WITH GRANT OPTION;
+CREATE DATABASE sirocco;
+GRANT ALL ON *.* to sirocco@'%' IDENTIFIED BY 'sirocco';</programlisting>
+                <para>Initialize the database by executing:</para>
+            <programlisting>mysql -usirocco -psirocco sirocco &lt; etc/db/sirocco_db.sql</programlisting></step>
+            <step><para>Start GlassFish and deploy Sirocco</para>
+            <programlisting>asadmin start-domain
+asadmin deploy sirocco-XXX-SNAPSHOT.ear</programlisting>
+            </step>
+            <step><para>Open a browser to the following URL: <emphasis>http://localhost:8080/dashboard/ui</emphasis> </para></step>
+        </procedure>
+    </section>
+</chapter>

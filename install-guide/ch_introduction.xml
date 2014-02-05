@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+    xml:id="ch_intro">
+    <title>Introduction</title>
+    
+    <section>
+        <title>What is Sirocco</title>
+        <para>Sirocco is a multi-cloud manager offering a single point of entry to access multiple cloud providers.
+            It exposes an unified IaaS API compliant with the <link xlink:href="http://dmtf.org/standards/cloud">DMTF CIMI standard</link> and translate this user-facing API to the
+        provider-specific API of the underlying IaaS providers.
+            <figure xml:id="arch">
+                <title>Sirocco architecture</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="figures/archi.png"
+                        format="PNG" contentwidth="6in"/>
+                </imageobject>
+            </mediaobject>
+            </figure>
+        </para>
+        <para>
+            The main components of the Sirocco multi-cloud manager are:
+        </para>
+        <itemizedlist>
+            <listitem><para><emphasis role="bold">Resource Lifecyle Manager</emphasis></para>
+                <para>This component is in charge of handling the lifecyle of cloud resources (compute, storage, network) on top of IaaS providers.
+                It is worth noting that Sirocco keeps in its internal database a record of every resource consumed by clients.</para></listitem>
+            <listitem><para><emphasis role="bold">Placement Engine</emphasis></para>
+                <para>The placement engine is in charge of placing a resource on the provider whose capabilities match the constraint of the
+                    resource to provision. The current placement policy implemented in Sirocco is manual: the client discovers the available providers 
+                matching location and QoS constraints and must select a specific provider.</para></listitem>
+            <listitem><para><emphasis role="bold">Metering and accounting</emphasis></para>
+                <para>This component keeps track of the resources consumed by all tenants across the providers it has access to.</para></listitem>
+            <listitem><para><emphasis role="bold">Cloud Provider connectors</emphasis></para>
+                <para>Sirocco features a plugin interface that allows to develop connectors that bridge the generic resource model of Sirocco with a
+                provider-specific model and API.</para></listitem>
+        </itemizedlist>
+        <para> As of version 0.6 Sirocco supports the following IaaS providers:
+            <itemizedlist>
+                <listitem><para>Amazon EC2 (classic mode only)</para></listitem>
+                <listitem><para>OpenStack (Grizzly release or higher)</para></listitem>
+                <listitem><para>VMware vCloud Director 5.1+</para></listitem>
+                <listitem><para>Microsoft SCVMM (using SPF API)</para></listitem>
+            </itemizedlist></para>
+        <para>The following table shows the mapping between IaaS functionality exposed by Sirocco "north" IaaS api and
+        provider-specific functions.</para>
+        <table rules="all" xml:id="table1" width="95%">
+            <caption>IaaS function support</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Amazon EC2</th>
+                    <th>OpenStack</th>
+                    <th>VMware vCloud</th>
+                    <th>Microsoft SPF/SCVMM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>VM lifecycle</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>SSH key injection</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                    <td>TODO</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>User data injection</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                    <td>TODO</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>Volume Support</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                    <td>Not supported</td>
+                    <td>Not Supported</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>Capture Image from VM</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>VM snapshots</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>Multiple networks and subnets</td>
+                    <td>TODO (VPC support)</td>
+                    <td>OK</td>
+                    <td>OK</td>
+                    <td>Partial</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>External IP addresses</td>
+                    <td>TODO (Elastic IP)</td>
+                    <td>OK (Floating IPs)</td>
+                    <td>OK</td>
+                    <td>TODO</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>Security Groups</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                    <td>TODO</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</chapter>

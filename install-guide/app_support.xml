@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+    xml:id="app_pointers">
+    <?dbhtml stop-chunking?>
+    <title>References</title>
+
+    <para></para>
+    <itemizedlist>
+        <listitem>
+            <para><emphasis role="bold">Sirocco GitHub project:</emphasis>
+                <link xlink:href="https://github.com/ow2-sirocco"
+                    >https://github.com/ow2-sirocco</link></para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Sirocco CIMI Java SDK:</emphasis>
+                <link xlink:href="http://wiki.sirocco.ow2.org/xwiki/bin/view/Components/cimiclient"
+                    >http://wiki.sirocco.ow2.org/xwiki/bin/view/Components/cimiclient</link></para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Sirocco CIMI Java SDK Javadoc:</emphasis>
+                <link xlink:href="http://sirocco.ow2.org/apidocs/cimijavasdk/"
+                    >http://sirocco.ow2.org/apidocs/cimijavasdk/</link></para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Sirocco command line tools:</emphasis>
+                <link xlink:href="http://wiki.sirocco.ow2.org/xwiki/bin/view/Components/cimitools"
+                    >http://wiki.sirocco.ow2.org/xwiki/bin/view/Components/cimitools</link></para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Sirocco forge home page:</emphasis> <link
+                xlink:href="http://forge.ow2.org/projects/sirocco/">http://forge.ow2.org/projects/sirocco//</link>
+            </para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Javadoc Sirocco APIs:</emphasis>
+                <link xlink:href="http://sirocco.ow2.org/cloudmanager/apidocs/"
+                    >http://sirocco.ow2.org/cloudmanager/apidocs/</link>
+            </para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Sirocco bug/issue tracker:</emphasis>
+                <link xlink:href="http://jira.ow2.org/browse/SIROCCO"
+                    >http://jira.ow2.org/browse/SIROCCO</link>
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+</appendix>

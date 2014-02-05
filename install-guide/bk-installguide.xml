@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    version="5.0"
+    xml:id="sirocco-user-guide-trunk">
+
+    <title>Sirocco User Guide</title>
+    <?rax title.font.size="28px" subtitle.font.size="28px"?>
+<titleabbrev>User Guide</titleabbrev>
+    <info>
+        <author>
+            <personname>
+                <firstname/>
+                <surname/>
+            </personname>
+            <affiliation>
+                <orgname>OW2</orgname>
+            </affiliation>
+        </author>
+        <copyright>
+            <year>2014</year>
+            <holder>OW2</holder>
+        </copyright>
+        <releaseinfo></releaseinfo>
+        <productname>Sirocco</productname>
+        <pubdate></pubdate>
+        <legalnotice role="cc-by">
+            <annotation>
+                <remark>Remaining licensing details are filled in by
+                    the template.</remark>
+            </annotation>
+        </legalnotice>
+        <abstract>
+            <para>This guide describes how to install  
+                Sirocco.</para>
+        </abstract>
+    </info>
+    <!-- Chapters are referred from the book file through these include statements. You can add additional chapters using these types of statements. -->
+    <xi:include href="ch_introduction.xml"/>
+    <xi:include href="ch_install.xml"/>
+    <xi:include href="ch_dashboard.xml"/>
+    <xi:include href="app_support.xml"/>
+   </book>

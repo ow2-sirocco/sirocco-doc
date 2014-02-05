@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+    xml:id="ch_dashboard">
+    <title>Dashboard</title>
+    
+    <section>
+        <title>Main panel</title>
+    <para>
+        The Sirocco dashboard provides a unified interface to control resources deployed on multiple cloud providers.
+        <figure xml:id="dashboard-main">
+            <title>Dashboard main screen</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="figures/dashboard_main_screen.png"
+                        format="PNG" contentwidth="6in"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </para>
+    <para>The left panel gives access to the main resources managed by Sirocco:</para>
+    <variablelist>
+        <varlistentry>
+            <term><guilabel>Providers</guilabel></term>
+            <listitem>
+                <para>View the IaaS providers accessible to the current tenant</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><guilabel>Instances</guilabel></term>
+            <listitem>
+                <para>View the VM instances</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><guilabel>Images</guilabel></term>
+            <listitem>
+                <para>View VM images</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><guilabel>Volumes</guilabel></term>
+            <listitem>
+                <para>View the volumes providing persistent block storage for instances</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><guilabel>Networks</guilabel></term>
+            <listitem>
+                <para>View networks and their subnets</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><guilabel>External IP addresses</guilabel></term>
+            <listitem>
+                <para>View the external IP addresses and manage their association to instances</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term><guilabel>Keypairs</guilabel></term>
+            <listitem>
+                <para>View SSH keypairs whose public key can be injected into a VM to provide password-less login</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </section>
+    <section>
+        <title>Adding a provider</title>
+        <para>Click on the "Add provider" button on the Provider view to add a provider:
+            
+            <figure xml:id="dashboard-provider-choice">
+                <title>Dashboard provider creation</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="figures/dashboard_provider_choice.png"
+                            format="PNG" contentwidth="6in"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            The following snapshots shows the parameters required to add a provider account on the following IaaS providers:
+        </para>
+        <itemizedlist>
+            <listitem><para>Amazon EC2</para></listitem>
+            <listitem><para>OpenStack</para></listitem>
+            <listitem><para>VMware vCloud Director</para></listitem>
+            <listitem><para>Microsoft SPF/SCVMM</para></listitem>
+        </itemizedlist>
+        <para>
+            
+            <figure xml:id="dashboard-provider-ec2">
+                <title>Dashboard Amazon EC2 provider creation</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="figures/dashboard_provider_ec2.png"
+                            format="PNG" contentwidth="6in"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <figure xml:id="dashboard-provider-openstack">
+                <title>Dashboard OpenStack provider creation</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="figures/dashboard_provider_openstack.png"
+                            format="PNG" contentwidth="6in"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <figure xml:id="dashboard-provider-vcloud">
+                <title>Dashboard VMware vCloud Director provider creation</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="figures/dashboard_provider_vcloud.png"
+                            format="PNG" contentwidth="6in"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            <figure xml:id="dashboard-provider-spf">
+                <title>Dashboard Microsoft SPF/SCVMM provider creation</title>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="figures/dashboard_provider_spf.png"
+                            format="PNG" contentwidth="6in"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            
+            
+        </para>
+    </section>
+        
+    
+</chapter>
